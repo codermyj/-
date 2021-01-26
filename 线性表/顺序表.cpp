@@ -66,6 +66,31 @@ int LocateElem(SqList &L, ElemType e) {
     return 0;
 }
 
+// 8、在顺序表L的第i个位置插入元素e
+Status ListInsert_sq(SqList &L, int i, ElemType e) {
+    if(i < 1 || i > L.length + 1)
+        return ERROR;
+    if(L.length == MAX_SIZE)
+        return ERROR;
+    for(int j = L.length - 1; j >= i - 1; j--){
+        L.elem[j+1] = L.elem[j];
+    }
+    L.elem[i-1] = e;
+    L.length++;
+    return OK;
+}
+
+// 9、将顺序表L第i位置的元素删除
+Status ListDelete_sq(SqList &L, int i){
+    if(i<1||i>L.length)
+        return ERROR;
+    for(int j = i -1;j <L.length -1; j++){
+        L.elem[j] = L.elem[j+1];
+    }
+    L.length--;
+    return OK;
+}
+
 int main(){
    char sq[11] = "abcdefghij";
     SqList L1;
@@ -73,7 +98,7 @@ int main(){
     L1.length = 10;
 
     int index;
-    index = LocateElem(L1, 'c');
+    index = LocateElem(L1, 'j');
     cout <<index <<endl;
 }
 
