@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<iostream>
 using namespace std;
-//Ô¤¶¨Òå³£Á¿
+//é¢„å®šä¹‰å¸¸é‡
 #define TRUE 1
 #define FALSE 0
 #define OK 1
@@ -14,13 +14,13 @@ using namespace std;
 typedef int Status;
 typedef char ElemType;
 
-// 0¡¢ÏßĞÔ±í¶¨Òå
+// 0ã€çº¿æ€§è¡¨å®šä¹‰
 typedef struct {
     ElemType *elem;
     int length;
 } SqList;
 
-// 1¡¢³õÊ¼»¯ÏßĞÔ±í
+// 1ã€åˆå§‹åŒ–çº¿æ€§è¡¨
 Status InitList_Sq(SqList &L) {
     L.elem = new ElemType[MAX_SIZE];
     if(!L.elem) exit(OVERFLOW);
@@ -28,22 +28,22 @@ Status InitList_Sq(SqList &L) {
     return OK;
 }
 
-// 2¡¢Ïú»ÙÏßĞÔ±í
+// 2ã€é”€æ¯çº¿æ€§è¡¨
 void DestroyList(SqList &L) {
     if(L.elem) delete L.elem;
 }
 
-// 3¡¢Çå¿ÕÏßĞÔ±í
+// 3ã€æ¸…ç©ºçº¿æ€§è¡¨
 void ClearList(SqList &L) {
     L.length = 0;
 }
 
-// 4¡¢ÇóÏßĞÔ±íLµÄ³¤¶È
+// 4ã€æ±‚çº¿æ€§è¡¨Lçš„é•¿åº¦
 int GetLength(SqList &L) {
     return L.length;
 }
 
-// 5¡¢ÅĞ¶ÏÏßĞÔ±íÊÇ·ñÎª¿Õ
+// 5ã€åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦ä¸ºç©º
 int IsEmpty(SqList &L) {
     if(L.length == 0)
         return 1;
@@ -51,14 +51,29 @@ int IsEmpty(SqList &L) {
         return 0;
 }
 
-// 6¡¢Ë³Ğò±íÈ¡Öµ
+// 6ã€é¡ºåºè¡¨å–å€¼
 int GetElem(SqList &L, int i, ElemType &e) {
     if(i < 1 || i > L.length) return ERROR;
     e = L.elem[i-1];
     return OK;
 }
 
+// 7ã€æŒ‰å€¼æŸ¥æ‰¾æŸä¸ªå…ƒç´ 
+int LocateElem(SqList &L, ElemType e) {
+    for(int i = 0; i < L.length; i++) {
+        if(L.elem[i] == e) return i+1;
+    }
+    return 0;
+}
 
 int main(){
-   cout << "mainº¯ÊıÔËĞĞ²âÊÔ" <<endl;
+   char sq[11] = "abcdefghij";
+    SqList L1;
+    L1.elem = sq;
+    L1.length = 10;
+
+    int index;
+    index = LocateElem(L1, 'c');
+    cout <<index <<endl;
 }
+
